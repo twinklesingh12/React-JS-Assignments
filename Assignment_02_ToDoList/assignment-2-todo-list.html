@@ -4,79 +4,319 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Assignment 2 | To-Do List</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      min-height: 100vh; margin: 0; padding: 28px 16px;
-      display: grid; place-items: center; font-family: system-ui, Arial, sans-serif;
-      color: #213047; background: radial-gradient(circle at 14% 20%, #ffd6bd 0, transparent 36%),
-      radial-gradient(circle at 85% 80%, #b4e6da 0, transparent 38%), #f6f0e8;
+      min-height: 100vh;
+      margin: 0;
+      font-family: system-ui, Arial, sans-serif;
+      color: #213047;
+      background:
+        radial-gradient(circle at 14% 20%, #ffd6bd 0, transparent 36%),
+        radial-gradient(circle at 85% 80%, #b4e6da 0, transparent 38%),
+        #f6f0e8;
     }
+
+    /* Top navigation */
+    .studio-header {
+      width: 100%;
+      background: #fffdfa;
+      border-bottom: 1px solid #e8e6e2;
+    }
+
+    .studio-nav {
+      width: min(1180px, 90%);
+      min-height: 84px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .studio-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #25344b;
+      font-size: 21px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .studio-brand span {
+      color: #478575;
+      font-size: 31px;
+    }
+
+    .studio-back {
+      color: #25344b;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .studio-back:hover {
+      color: #478575;
+      text-decoration: underline;
+    }
+
+    .studio-nav a:focus-visible {
+      outline: 3px solid #478575;
+      outline-offset: 4px;
+    }
+
+    .studio-content {
+      min-height: calc(100vh - 85px);
+      display: grid;
+      place-items: center;
+      padding: 36px 20px;
+    }
+
+    /* To-do card */
     .app {
-      width: min(100%, 540px); padding: 30px; border-radius: 26px;
-      background: #fffdf9; box-shadow: 0 22px 60px #283f4930;
+      width: min(100%, 540px);
+      padding: 30px;
+      border-radius: 26px;
+      background: #fffdf9;
+      box-shadow: 0 22px 60px #283f4930;
     }
-    .eyebrow { margin: 0 0 6px; color: #bb6452; font-size: 12px; font-weight: 800; letter-spacing: 2px; }
-    h1 { margin: 0; font-size: clamp(30px, 7vw, 40px); letter-spacing: -1px; }
-    .intro { margin: 6px 0 24px; color: #687589; }
-    form { display: flex; gap: 10px; }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: #bb6452;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 7vw, 40px);
+      letter-spacing: -1px;
+    }
+
+    .intro {
+      margin: 6px 0 24px;
+      color: #687589;
+    }
+
+    form {
+      display: flex;
+      gap: 10px;
+    }
+
     input {
-      flex: 1; min-width: 0; padding: 14px 16px; border: 2px solid #e5e8e4;
-      border-radius: 13px; font: inherit; outline: none; background: #fff;
+      flex: 1;
+      min-width: 0;
+      padding: 14px 16px;
+      border: 2px solid #e5e8e4;
+      border-radius: 13px;
+      font: inherit;
+      outline: none;
+      background: #fff;
     }
-    input:focus { border-color: #2d9a85; }
-    button { font: inherit; cursor: pointer; }
+
+    input:focus {
+      border-color: #2d9a85;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button:focus-visible {
+      outline: 3px solid #478575;
+      outline-offset: 4px;
+    }
+
     .add {
-      padding: 12px 18px; border: 0; border-radius: 13px;
-      color: white; background: #257d70; font-weight: 750;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 13px;
+      color: white;
+      background: #257d70;
+      font-weight: 750;
     }
-    .add:hover { background: #19695d; }
-    .toolbar { display: flex; align-items: center; justify-content: space-between; margin: 28px 0 12px; }
-    h2 { margin: 0; font-size: 16px; }
-    #count { color: #708196; font-size: 13px; }
-    ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+
+    .add:hover {
+      background: #19695d;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 28px 0 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    #count {
+      color: #708196;
+      font-size: 13px;
+    }
+
+    ul {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
     li {
-      display: flex; align-items: center; gap: 12px; padding: 13px;
-      border: 1px solid #e7eae7; border-radius: 14px; background: #f8faf8;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px;
+      border: 1px solid #e7eae7;
+      border-radius: 14px;
+      background: #f8faf8;
     }
+
     .check {
-      display: grid; place-items: center; flex: 0 0 29px; height: 29px;
-      border: 2px solid #86bdb2; border-radius: 50%; background: white;
-      color: white; font-weight: 800;
+      display: grid;
+      place-items: center;
+      flex: 0 0 29px;
+      height: 29px;
+      padding: 0;
+      border: 2px solid #86bdb2;
+      border-radius: 50%;
+      background: white;
+      color: white;
+      font-weight: 800;
     }
-    .task-text { flex: 1; overflow-wrap: anywhere; }
-    li.completed .check { border-color: #257d70; background: #257d70; }
-    li.completed .task-text { color: #89959c; text-decoration: line-through; }
+
+    .task-text {
+      flex: 1;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    li.completed .check {
+      border-color: #257d70;
+      background: #257d70;
+    }
+
+    li.completed .task-text {
+      color: #89959c;
+      text-decoration: line-through;
+    }
+
     .delete {
-      border: 0; border-radius: 9px; padding: 7px 10px;
-      color: #ad4e4e; background: #fbeaea; font-size: 13px; font-weight: 700;
+      border: 0;
+      border-radius: 9px;
+      padding: 7px 10px;
+      color: #ad4e4e;
+      background: #fbeaea;
+      font-size: 13px;
+      font-weight: 700;
     }
-    .delete:hover { background: #f7d5d5; }
-    .empty { padding: 27px; border: 2px dashed #d9e5df; border-radius: 15px;
-      text-align: center; color: #7b8b91; }
-    #message { min-height: 20px; margin: 8px 0 0; color: #b34646; font-size: 13px; }
-    @media (max-width: 390px) { .app { padding: 22px; } .add { padding-inline: 12px; } }
+
+    .delete:hover {
+      background: #f7d5d5;
+    }
+
+    .empty {
+      padding: 27px;
+      border: 2px dashed #d9e5df;
+      border-radius: 15px;
+      text-align: center;
+      color: #7b8b91;
+    }
+
+    #message {
+      min-height: 20px;
+      margin: 8px 0 0;
+      color: #b34646;
+      font-size: 13px;
+    }
+
+    @media (max-width: 550px) {
+      .studio-nav {
+        min-height: 72px;
+      }
+
+      .studio-brand {
+        font-size: 17px;
+        gap: 7px;
+      }
+
+      .studio-back {
+        font-size: 12px;
+      }
+
+      .studio-content {
+        min-height: calc(100vh - 73px);
+        padding: 28px 16px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .app {
+        padding: 22px;
+      }
+
+      .add {
+        padding-inline: 12px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <main class="app">
-    <p class="eyebrow">JAVASCRIPT · ASSIGNMENT 02</p>
-    <h1>My little plans ✦</h1>
-    <p class="intro">Write it down. Check it off. Keep moving.</p>
+  <header class="studio-header">
+    <nav class="studio-nav">
+      <a class="studio-brand" href="../">
+        <span aria-hidden="true">✳</span> Assignment Studio
+      </a>
 
-    <form id="taskForm">
-      <input id="taskInput" type="text" placeholder="What needs to be done?" aria-label="New task" maxlength="150">
-      <button class="add" type="submit">+ Add</button>
-    </form>
-    <p id="message" role="alert"></p>
+      <a class="studio-back" href="../">
+        ← All assignments
+      </a>
+    </nav>
+  </header>
 
-    <div class="toolbar">
-      <h2>Your tasks</h2>
-      <span id="count">0 tasks left</span>
-    </div>
-    <ul id="taskList"></ul>
-    <p id="emptyState" class="empty">No tasks yet. Add your first one above ☀</p>
-  </main>
+  <div class="studio-content">
+    <main class="app">
+      <p class="eyebrow">JAVASCRIPT · ASSIGNMENT 02</p>
+      <h1>My little plans ✦</h1>
+      <p class="intro">Write it down. Check it off. Keep moving.</p>
+
+      <form id="taskForm">
+        <input
+          id="taskInput"
+          type="text"
+          placeholder="What needs to be done?"
+          aria-label="New task"
+          maxlength="150"
+        >
+        <button class="add" type="submit">+ Add</button>
+      </form>
+
+      <p id="message" role="alert"></p>
+
+      <div class="toolbar">
+        <h2>Your tasks</h2>
+        <span id="count" aria-live="polite">0 tasks left</span>
+      </div>
+
+      <ul id="taskList"></ul>
+
+      <p id="emptyState" class="empty">
+        No tasks yet. Add your first one above ☀
+      </p>
+    </main>
+  </div>
 
   <script>
     const form = document.getElementById('taskForm');
@@ -86,10 +326,14 @@
     const emptyState = document.getElementById('emptyState');
     const message = document.getElementById('message');
 
-    // Count unfinished tasks and show the empty message when necessary.
     function updateDisplay() {
-      const remaining = list.querySelectorAll('li:not(.completed)').length;
-      count.textContent = remaining + (remaining === 1 ? ' task left' : ' tasks left');
+      const remaining = list.querySelectorAll(
+        'li:not(.completed)'
+      ).length;
+
+      count.textContent =
+        remaining + (remaining === 1 ? ' task left' : ' tasks left');
+
       emptyState.hidden = list.children.length > 0;
     }
 
@@ -102,7 +346,11 @@
       completeButton.type = 'button';
       completeButton.className = 'check';
       completeButton.textContent = '✓';
-      completeButton.setAttribute('aria-label', 'Mark ' + taskName + ' as completed');
+      completeButton.setAttribute(
+        'aria-label',
+        'Mark ' + taskName + ' as completed'
+      );
+      completeButton.setAttribute('aria-pressed', 'false');
 
       text.className = 'task-text';
       text.textContent = taskName;
@@ -113,9 +361,16 @@
       deleteButton.setAttribute('aria-label', 'Delete ' + taskName);
 
       completeButton.addEventListener('click', function () {
-        item.classList.toggle('completed');
-        completeButton.setAttribute('aria-label',
-          (item.classList.contains('completed') ? 'Mark as incomplete: ' : 'Mark as completed: ') + taskName);
+        const completed = item.classList.toggle('completed');
+
+        completeButton.setAttribute(
+          'aria-label',
+          (completed
+            ? 'Mark as incomplete: '
+            : 'Mark as completed: ') + taskName
+        );
+        completeButton.setAttribute('aria-pressed', String(completed));
+
         updateDisplay();
       });
 
@@ -130,7 +385,8 @@
     }
 
     form.addEventListener('submit', function (event) {
-      event.preventDefault(); // Keep the browser from reloading the page.
+      event.preventDefault();
+
       const taskName = input.value.trim();
 
       if (taskName === '') {

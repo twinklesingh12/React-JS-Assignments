@@ -28,3 +28,74 @@ h1 { margin: 7px 0 13px; font-size: clamp(30px, 8vw, 39px); letter-spacing: -1.5
   font-size: 12px; font-weight: 750; }
 .badge span { color: #43a283; }
 .footer-note { margin-top: 20px; color: #7e8896; font-size: 12px; text-align: center; }
+/* Shared top navigation */
+.studio-header {
+  width: 100%;
+  background: #fffdfa;
+  border-bottom: 1px solid #e8e6e2;
+}
+
+.studio-nav {
+  width: min(1180px, 90%);
+  min-height: 84px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.studio-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #25344b;
+  font-size: 21px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.studio-brand span {
+  color: #478575;
+  font-size: 31px;
+}
+
+.studio-back {
+  color: #25344b;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.studio-back:hover {
+  color: #478575;
+  text-decoration: underline;
+}
+
+.studio-nav a:focus-visible {
+  outline: 3px solid #478575;
+  outline-offset: 4px;
+}
+
+/* Profile layout below the header */
+.page {
+  min-height: calc(100vh - 85px);
+}
+
+@media (max-width: 550px) {
+  .studio-nav {
+    min-height: 72px;
+  }
+
+  .studio-brand {
+    font-size: 17px;
+    gap: 7px;
+  }
+
+  .studio-back {
+    font-size: 12px;
+  }
+
+  .page {
+    min-height: calc(100vh - 73px);
+  }
+}

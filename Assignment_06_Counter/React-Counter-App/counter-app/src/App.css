@@ -1,35 +1,177 @@
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  min-height: 100vh;
+  color: #25344b;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f8f7f4;
+}
+
+/* Top navigation */
+.studio-header {
+  background: #fffdfa;
+  border-bottom: 1px solid #e8e6e2;
+}
+
+.studio-nav {
+  width: min(1180px, 90%);
+  min-height: 84px;
+  margin: auto;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
-  background: #eef2ff;
-  color: #25304a;
+  justify-content: space-between;
+  gap: 16px;
 }
+
+.studio-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #25344b;
+  font-size: 21px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.studio-brand span {
+  color: #478575;
+  font-size: 31px;
+}
+
+.studio-back {
+  color: #25344b;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.studio-back:hover {
+  color: #478575;
+  text-decoration: underline;
+}
+
+/* Background */
+.counter-page {
+  min-height: calc(100vh - 85px);
+  display: grid;
+  place-items: center;
+  padding: 42px 20px;
+  background:
+    radial-gradient(circle at 15% 20%, #d9cdee, transparent 48%),
+    radial-gradient(circle at 90% 85%, #bce5dc, transparent 48%),
+    #f8f7f4;
+}
+
+/* Counter card */
 .counter {
-  width: min(440px, 92vw);
-  padding: 32px 20px;
+  width: min(100%, 520px);
+  padding: 40px 36px 36px;
   text-align: center;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px #25304a18;
+  background: #fffdfa;
+  border-radius: 30px;
+  box-shadow: 0 24px 50px #25344b0c;
 }
-h1 { margin: 0 0 12px; }
-p { color: #64748b; }
-.count { font-size: 72px; font-weight: bold; margin: 24px 0; }
-.buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+
+.eyebrow {
+  margin: 0 0 20px;
+  color: #a17e69;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(25px, 5vw, 32px);
+  letter-spacing: -1px;
+  line-height: 1.3;
+}
+
+.subtitle {
+  margin: 18px 0 0;
+  color: #8290a2;
+  font-size: 16px;
+}
+
+.count {
+  display: block;
+  margin: 50px 0 40px;
+  color: #478575;
+  font-size: 100px;
+  font-weight: 800;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+/* Buttons */
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
 button {
-  padding: 12px 16px;
   border: none;
-  border-radius: 8px;
-  background: #4f46e5;
-  color: white;
-  font-size: 15px;
+  border-radius: 14px;
+  padding: 18px 12px;
+  font: 700 14px "Segoe UI", Arial, sans-serif;
   cursor: pointer;
 }
-button:hover { background: #3730a3; }
-button:focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
-.reset { background: #475569; }
+
+.decrement {
+  color: #416e65;
+  background: #e7f3ee;
+}
+
+.increment {
+  color: white;
+  background: #507f71;
+}
+
+.reset {
+  margin-top: 16px;
+  padding: 18px 16px;
+  color: #84619d;
+  background: #f0ebf6;
+}
+
+button:hover {
+  filter: brightness(0.96);
+}
+
+button:focus-visible,
+.studio-nav a:focus-visible {
+  outline: 3px solid #a782c1;
+  outline-offset: 4px;
+}
+
+/* Mobile layout */
+@media (max-width: 550px) {
+  .studio-nav {
+    min-height: 72px;
+  }
+
+  .studio-brand {
+    font-size: 17px;
+    gap: 7px;
+  }
+
+  .studio-back {
+    font-size: 12px;
+  }
+
+  .counter {
+    padding: 30px 20px;
+  }
+
+  .counter-page {
+    min-height: calc(100vh - 73px);
+    padding: 28px 14px;
+  }
+
+  .count {
+    margin: 36px 0;
+    font-size: 82px;
+  }
+}

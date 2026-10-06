@@ -3,90 +3,306 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Your Account</title>
+  <title>Create Your Account | Assignment Studio</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      min-height: 100vh; margin: 0; padding: 24px;
-      display: grid; place-items: center; font-family: system-ui, Arial, sans-serif;
-      color: #25334b; background: radial-gradient(circle at 15% 15%, #ffd7cb, transparent 34%),
-      radial-gradient(circle at 90% 85%, #c5d8fa, transparent 36%), #f7f5fa;
+      min-height: 100vh;
+      margin: 0;
+      font-family: system-ui, Arial, sans-serif;
+      color: #25334b;
+      background:
+        radial-gradient(circle at 15% 15%, #ffd7cb, transparent 34%),
+        radial-gradient(circle at 90% 85%, #c5d8fa, transparent 36%),
+        #f7f5fa;
     }
+
+    /* Top navigation */
+    .studio-header {
+      width: 100%;
+      background: #fffdfa;
+      border-bottom: 1px solid #e8e6e2;
+    }
+
+    .studio-nav {
+      width: min(1180px, 90%);
+      min-height: 84px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .studio-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #25344b;
+      font-size: 21px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .studio-brand span {
+      color: #478575;
+      font-size: 31px;
+    }
+
+    .studio-back {
+      color: #25344b;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .studio-back:hover {
+      color: #478575;
+      text-decoration: underline;
+    }
+
+    .studio-nav a:focus-visible {
+      outline: 3px solid #478575;
+      outline-offset: 4px;
+    }
+
+    .studio-content {
+      min-height: calc(100vh - 85px);
+      display: grid;
+      place-items: center;
+      padding: 36px 20px;
+    }
+
+    /* Registration card */
     .card {
-      width: min(100%, 470px); padding: 34px; border-radius: 26px;
-      background: #fff; box-shadow: 0 24px 65px #29315b22;
+      width: min(100%, 470px);
+      padding: 34px;
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: 0 24px 65px #29315b22;
     }
+
     .symbol {
-      display: grid; place-items: center; width: 48px; height: 48px;
-      border-radius: 16px; background: #ede9fe; color: #6449bd; font-size: 27px;
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: #ede9fe;
+      color: #6449bd;
+      font-size: 27px;
     }
-    h1 { margin: 17px 0 4px; font-size: 30px; letter-spacing: -.6px; }
-    .subtitle { margin: 0 0 26px; color: #748097; line-height: 1.5; }
-    .field { margin: 0 0 17px; }
-    label { display: block; margin-bottom: 7px; font-size: 14px; font-weight: 700; }
+
+    h1 {
+      margin: 17px 0 4px;
+      font-size: 30px;
+      letter-spacing: -0.6px;
+    }
+
+    .subtitle {
+      margin: 0 0 26px;
+      color: #748097;
+      line-height: 1.5;
+    }
+
+    .field {
+      margin: 0 0 17px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
     input {
-      width: 100%; padding: 13px 15px; border: 1.5px solid #dce1eb;
-      border-radius: 12px; outline: none; font: inherit; color: #25334b;
+      width: 100%;
+      padding: 13px 15px;
+      border: 1.5px solid #dce1eb;
+      border-radius: 12px;
+      outline: none;
+      font: inherit;
+      color: #25334b;
     }
-    input:focus { border-color: #8064d6; box-shadow: 0 0 0 3px #8064d622; }
-    input.invalid { border-color: #d85870; background: #fff9fa; }
-    .error { display: block; min-height: 18px; margin-top: 5px; color: #bd3854; font-size: 12px; }
+
+    input:focus {
+      border-color: #8064d6;
+      box-shadow: 0 0 0 3px #8064d622;
+    }
+
+    input.invalid {
+      border-color: #d85870;
+      background: #fff9fa;
+    }
+
+    .error {
+      display: block;
+      min-height: 18px;
+      margin-top: 5px;
+      color: #bd3854;
+      font-size: 12px;
+    }
+
     button {
-      width: 100%; padding: 14px; border: 0; border-radius: 12px;
-      background: linear-gradient(120deg, #7758d1, #9c69d5); color: #fff;
-      font: inherit; font-weight: 800; cursor: pointer;
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(120deg, #7758d1, #9c69d5);
+      color: #fff;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
     }
-    button:hover { filter: brightness(1.07); }
+
+    button:hover {
+      filter: brightness(1.07);
+    }
+
+    button:focus-visible {
+      outline: 3px solid #8064d6;
+      outline-offset: 4px;
+    }
+
     #success {
-      margin: 16px 0 0; padding: 13px; border-radius: 11px;
-      background: #e8f8ef; color: #22704a; text-align: center; font-size: 14px;
+      margin: 16px 0 0;
+      padding: 13px;
+      border-radius: 11px;
+      background: #e8f8ef;
+      color: #22704a;
+      text-align: center;
+      font-size: 14px;
     }
-    [hidden] { display: none !important; }
-    @media (max-width: 400px) { .card { padding: 24px; } }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 550px) {
+      .studio-nav {
+        min-height: 72px;
+      }
+
+      .studio-brand {
+        font-size: 17px;
+        gap: 7px;
+      }
+
+      .studio-back {
+        font-size: 12px;
+      }
+
+      .studio-content {
+        min-height: calc(100vh - 73px);
+        padding: 28px 16px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .card {
+        padding: 24px;
+      }
+    }
   </style>
 </head>
-<body>
-  <main class="card">
-    <div class="symbol" aria-hidden="true">✦</div>
-    <h1>Create your account</h1>
-    <p class="subtitle">A few details and you're ready to go.</p>
 
-    <form id="registrationForm" novalidate>
-      <div class="field">
-        <label for="name">Full name</label>
-        <input id="name" type="text" placeholder="e.g. Twinkle Singh" autocomplete="name" aria-describedby="nameError">
-        <small class="error" id="nameError"></small>
-      </div>
-      <div class="field">
-        <label for="email">Email address</label>
-        <input id="email" type="email" placeholder="you@example.com" autocomplete="email" aria-describedby="emailError">
-        <small class="error" id="emailError"></small>
-      </div>
-      <div class="field">
-        <label for="phone">Phone number</label>
-        <input id="phone" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number" autocomplete="tel" aria-describedby="phoneError">
-        <small class="error" id="phoneError"></small>
-      </div>
-      <div class="field">
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="At least 8 characters" autocomplete="new-password" aria-describedby="passwordError">
-        <small class="error" id="passwordError"></small>
-      </div>
-      <button type="submit">Create account →</button>
-      <p id="success" role="status" hidden>✓ Form validated successfully!</p>
-    </form>
-  </main>
+<body>
+  <header class="studio-header">
+    <nav class="studio-nav">
+      <a class="studio-brand" href="../">
+        <span aria-hidden="true">✳</span> Assignment Studio
+      </a>
+
+      <a class="studio-back" href="../">
+        ← All assignments
+      </a>
+    </nav>
+  </header>
+
+  <div class="studio-content">
+    <main class="card">
+      <div class="symbol" aria-hidden="true">✦</div>
+      <h1>Create your account</h1>
+      <p class="subtitle">A few details and you're ready to go.</p>
+
+      <form id="registrationForm" novalidate>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="e.g. Twinkle Singh"
+            autocomplete="name"
+            aria-describedby="nameError"
+          >
+          <small class="error" id="nameError"></small>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            aria-describedby="emailError"
+          >
+          <small class="error" id="emailError"></small>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input
+            id="phone"
+            type="tel"
+            inputmode="numeric"
+            maxlength="10"
+            placeholder="10-digit mobile number"
+            autocomplete="tel"
+            aria-describedby="phoneError"
+          >
+          <small class="error" id="phoneError"></small>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="At least 8 characters"
+            autocomplete="new-password"
+            aria-describedby="passwordError"
+          >
+          <small class="error" id="passwordError"></small>
+        </div>
+
+        <button type="submit">Create account →</button>
+
+        <p id="success" role="status" hidden>
+          ✓ Form validated successfully!
+        </p>
+      </form>
+    </main>
+  </div>
 
   <script>
     const form = document.getElementById('registrationForm');
     const success = document.getElementById('success');
     const fields = ['name', 'email', 'phone', 'password'];
 
-    // Show or clear an error for one field.
     function setError(field, message) {
+      const input = document.getElementById(field);
+
       document.getElementById(field + 'Error').textContent = message;
-      document.getElementById(field).classList.toggle('invalid', message !== '');
-      document.getElementById(field).setAttribute('aria-invalid', message !== '' ? 'true' : 'false');
+      input.classList.toggle('invalid', message !== '');
+      input.setAttribute(
+        'aria-invalid',
+        message !== '' ? 'true' : 'false'
+      );
     }
 
     function validateForm() {
@@ -94,9 +310,12 @@
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
       const password = document.getElementById('password').value;
+
       let valid = true;
 
-      fields.forEach(function (field) { setError(field, ''); });
+      fields.forEach(function (field) {
+        setError(field, '');
+      });
 
       if (name.length < 2) {
         setError('name', 'Enter your name (at least 2 characters).');
@@ -122,7 +341,7 @@
     }
 
     form.addEventListener('submit', function (event) {
-      event.preventDefault(); // Validate without refreshing the page.
+      event.preventDefault();
       success.hidden = true;
 
       if (validateForm()) {
@@ -134,10 +353,11 @@
     });
 
     fields.forEach(function (field) {
-      document.getElementById(field).addEventListener('input', function () {
-        setError(field, '');
-        success.hidden = true;
-      });
+      document.getElementById(field)
+        .addEventListener('input', function () {
+          setError(field, '');
+          success.hidden = true;
+        });
     });
   </script>
 </body>
