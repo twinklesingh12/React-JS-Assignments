@@ -1,0 +1,73 @@
+name: Deploy Assignments to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare HTML assignments
+        run: |
+          mkdir -p site
+          cp index.html site/
+          cp -r Assignment_01_Calculator site/
+          cp -r Assignment_02_ToDoList site/
+          cp -r Assignment_03_FormValidation site/
+
+      - name: Build React Profile Card
+        working-directory: Assignment_04_ProfileCard/profile-card-react/profile-card-react
+        run: |
+          npm install
+          npm run build -- --base=/React-JS-Assignments/assignment-4/
+          cp -r dist "$GITHUB_WORKSPACE/site/assignment-4"
+
+      - name: Build React Controlled Form
+        working-directory: Assignment_05_ControlledForm/controlled-form-react/controlled-form-react
+        run: |
+          npm install
+          npm run build -- --base=/React-JS-Assignments/assignment-5/
+          cp -r dist "$GITHUB_WORKSPACE/site/assignment-5"
+
+      - name: Build React Counter
+        working-directory: Assignment_06_Counter/React-Counter-App/counter-app
+        run: |
+          npm install
+          npm run build -- --base=/React-JS-Assignments/assignment-6/
+          cp -r dist "$GITHUB_WORKSPACE/site/assignment-6"
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Publish website
+        id: deployment
+        uses: actions/deploy-pages@v4
