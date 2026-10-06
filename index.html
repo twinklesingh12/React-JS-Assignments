@@ -3,56 +3,328 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Twinkle's FSD Assignments</title>
+  <title>Twinkle Singh | FSD Assignments</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #eef2ff;
       margin: 0;
-      padding: 40px 20px;
-      color: #25304a;
+      font-family: Arial, sans-serif;
+      color: #233047;
+      background: #f5f6fb;
+      line-height: 1.6;
     }
+
+    header {
+      padding: 60px 20px 85px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #312e81, #6d28d9, #a855f7);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid #ffffff55;
+      border-radius: 30px;
+      background: #ffffff15;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(30px, 6vw, 46px);
+      line-height: 1.2;
+    }
+
+    header p {
+      margin: 0;
+      color: #ede9fe;
+      font-size: 17px;
+    }
+
+    .author {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #ede9fe;
+    }
+
     main {
-      max-width: 600px;
-      margin: auto;
+      max-width: 1050px;
+      margin: -35px auto 0;
+      padding: 0 20px 40px;
     }
-    h1, p { text-align: center; }
-    a {
-      display: block;
-      background: white;
-      color: #4338ca;
+
+    .summary {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px 30px;
       padding: 20px;
-      margin: 14px 0;
-      border-radius: 10px;
-      text-decoration: none;
-      box-shadow: 0 3px 10px #00000010;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px #312e8110;
+      text-align: center;
     }
-    a:hover { background: #ddd6fe; }
+
+    .summary span {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .summary strong {
+      color: #6d28d9;
+    }
+
+    .section-title {
+      margin: 35px 0 5px;
+      font-size: 24px;
+    }
+
+    .section-description {
+      margin: 0 0 22px;
+      color: #64748b;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      padding: 26px;
+      color: inherit;
+      text-decoration: none;
+      background: white;
+      border: 1px solid #e8eaf3;
+      border-radius: 18px;
+      box-shadow: 0 4px 12px #23304705;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #c4b5fd;
+      box-shadow: 0 14px 28px #6d28d915;
+    }
+
+    .card:focus-visible {
+      outline: 3px solid #7c3aed;
+      outline-offset: 4px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .number {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: #ede9fe;
+      color: #6d28d9;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #fff7ed;
+      color: #9a3412;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .tag.react {
+      background: #ecfeff;
+      color: #155e75;
+    }
+
+    .card h3 {
+      margin: 22px 0 8px;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin: 0 0 24px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .open {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid #f0f1f7;
+      color: #6d28d9;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .open span {
+      float: right;
+    }
+
+    footer {
+      padding: 24px 20px;
+      text-align: center;
+      border-top: 1px solid #e5e7eb;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #6d28d9;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 850px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 550px) {
+      header {
+        padding-top: 40px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card {
+        transition: none;
+      }
+
+      .card:hover {
+        transform: none;
+      }
+    }
   </style>
 </head>
-<body>
-  <main>
-    <h1>FSD Lab Assignments</h1>
-    <p>By Twinkle Singh</p>
 
-    <a href="./Assignment_01_Calculator/assignment-1-calculator.html">
-      1. JavaScript Calculator
-    </a>
-    <a href="./Assignment_02_ToDoList/assignment-2-todo-list.html">
-      2. To-Do List
-    </a>
-    <a href="./Assignment_03_FormValidation/registration-form.html">
-      3. Form Validation
-    </a>
-    <a href="./assignment-4/">
-      4. React Profile Card
-    </a>
-    <a href="./assignment-5/">
-      5. React Controlled Form
-    </a>
-    <a href="./assignment-6/">
-      6. React Counter
-    </a>
+<body>
+  <header>
+    <div class="badge">LEARN · BUILD · PRACTICE</div>
+    <h1>FSD Lab Assignments</h1>
+    <p>A collection of JavaScript and React projects</p>
+    <div class="author">Created by <strong>Twinkle Singh</strong></div>
+  </header>
+
+  <main>
+    <div class="summary">
+      <span><strong>06</strong> Assignments</span>
+      <span><strong>03</strong> JavaScript Projects</span>
+      <span><strong>03</strong> React Projects</span>
+    </div>
+
+    <h2 class="section-title">Explore the projects</h2>
+    <p class="section-description">
+      Choose an assignment to open its live demo.
+    </p>
+
+    <div class="grid">
+      <a class="card"
+         href="./Assignment_01_Calculator/assignment-1-calculator.html">
+        <div class="card-top">
+          <div class="number">01</div>
+          <span class="tag">JavaScript</span>
+        </div>
+        <h3>Calculator</h3>
+        <p>
+          Perform basic arithmetic operations using JavaScript functions.
+        </p>
+        <div class="open">Open project <span aria-hidden="true">→</span></div>
+      </a>
+
+      <a class="card"
+         href="./Assignment_02_ToDoList/assignment-2-todo-list.html">
+        <div class="card-top">
+          <div class="number">02</div>
+          <span class="tag">JavaScript</span>
+        </div>
+        <h3>To-Do List</h3>
+        <p>
+          Add tasks, mark them complete, and delete them using DOM operations.
+        </p>
+        <div class="open">Open project <span aria-hidden="true">→</span></div>
+      </a>
+
+      <a class="card"
+         href="./Assignment_03_FormValidation/registration-form.html">
+        <div class="card-top">
+          <div class="number">03</div>
+          <span class="tag">JavaScript</span>
+        </div>
+        <h3>Form Validation</h3>
+        <p>
+          Validate name, email, phone, and password in a registration form.
+        </p>
+        <div class="open">Open project <span aria-hidden="true">→</span></div>
+      </a>
+
+      <a class="card" href="./assignment-4/">
+        <div class="card-top">
+          <div class="number">04</div>
+          <span class="tag react">React</span>
+        </div>
+        <h3>Profile Card</h3>
+        <p>
+          Display a name, profile image, and description using React props.
+        </p>
+        <div class="open">Open project <span aria-hidden="true">→</span></div>
+      </a>
+
+      <a class="card" href="./assignment-5/">
+        <div class="card-top">
+          <div class="number">05</div>
+          <span class="tag react">React</span>
+        </div>
+        <h3>Controlled Form</h3>
+        <p>
+          Manage form inputs with React state and display changes in real time.
+        </p>
+        <div class="open">Open project <span aria-hidden="true">→</span></div>
+      </a>
+
+      <a class="card" href="./assignment-6/">
+        <div class="card-top">
+          <div class="number">06</div>
+          <span class="tag react">React</span>
+        </div>
+        <h3>Counter App</h3>
+        <p>
+          Increment, decrement, and reset a counter using the useState hook.
+        </p>
+        <div class="open">Open project <span aria-hidden="true">→</span></div>
+      </a>
+    </div>
   </main>
+
+  <footer>
+    Built by Twinkle Singh ·
+    <a href="https://github.com/twinklesingh12/React-JS-Assignments">
+      View source on GitHub
+    </a>
+  </footer>
 </body>
 </html>
